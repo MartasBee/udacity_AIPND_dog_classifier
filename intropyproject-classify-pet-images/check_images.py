@@ -3,8 +3,8 @@
 # */AIPND-revision/intropyproject-classify-pet-images/check_images.py
 #
 # TODO 0: Add your information below for Programmer & Date Created.                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                  
+# PROGRAMMER:   Martin Balaz [martin.balaz@thermofisher.com]
+# DATE CREATED: 2021-05-11
 # REVISED DATE: 
 # PURPOSE: Classifies pet images using a pretrained CNN model, compares these
 #          classifications to the true identity of the pets in the images, and
@@ -24,7 +24,7 @@
 ##
 
 # Imports python modules
-from time import time, sleep
+from time import time, sleep, strftime, gmtime
 
 # Imports print functions that check the lab
 from print_functions_for_lab_checks import *
@@ -92,7 +92,7 @@ def main():
 
     # Function that checks Results Dictionary for is-a-dog adjustment using results
     check_classifying_labels_as_dogs(results)
-
+    sleep(100.5)
 
     # TODO 5: Define calculates_results_stats function within the file calculates_results_stats.py
     # This function creates the results statistics dictionary that contains a
@@ -120,9 +120,20 @@ def main():
     
     # TODO 0: Computes overall runtime in seconds & prints it in hh:mm:ss format
     tot_time = end_time - start_time
+    tot_time_str = strftime("%H:%M:%S", gmtime(tot_time))
+    '''
+    // ORIG solution
+    
+    tot_time_hours = int(tot_time/3600)
+    tot_time_minutes = int((tot_time % 3600)/60)
+    tot_time_seconds = round((tot_time % 3600)%60)
+    
     print("\n** Total Elapsed Runtime:",
-          str(int((tot_time/3600)))+":"+str(int((tot_time%3600)/60))+":"
-          +str(int((tot_time%3600)%60)) )
+          str(tot_time_hours) + ":" +
+          str(tot_time_minutes) + ":" +
+          str(tot_time_seconds))
+    '''
+    print("** Total Elapsed Runtime:", tot_time_str)
     
 
 # Call to main function to run the program
