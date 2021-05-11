@@ -92,7 +92,7 @@ def main():
 
     # Function that checks Results Dictionary for is-a-dog adjustment using results
     check_classifying_labels_as_dogs(results)
-    sleep(100.5)
+
 
     # TODO 5: Define calculates_results_stats function within the file calculates_results_stats.py
     # This function creates the results statistics dictionary that contains a
@@ -114,8 +114,10 @@ def main():
     # Prints summary results, incorrect classifications of dogs (if requested)
     # and incorrectly classified breeds (if requested)
     print_results(results, results_stats, None, True, True)
+
     
     # TODO 0: Measure total program runtime by collecting end time
+    sleep(1.5)
     end_time = time()
     
     # TODO 0: Computes overall runtime in seconds & prints it in hh:mm:ss format
