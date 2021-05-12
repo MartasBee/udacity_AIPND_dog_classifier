@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/classify_images.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                 
+# PROGRAMMER:   Martin Balaz [martin.balaz@thermofisher.com]
+# DATE CREATED: 2021-05-12
 # REVISED DATE: 
 # PURPOSE: Create a function classify_images that uses the classifier function 
 #          to create the classifier labels and then compares the classifier 
@@ -65,4 +65,32 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    None 
+    # check if images_dir contains trailing slash
+    if images_dir[-1] is not '/':
+        images_dir += '/'
+    # loop through dict of dog files
+    for key, value in results_dic.items():
+        # build full path to file
+        complete_path_to_img = images_dir + key
+        # run classification of current image with selected CNN model
+        image_classification = ""
+        try:
+            image_classification = classifier(complete_path_to_img, model)
+        except KeyError as errKey:
+            print("ERROR: {}".format(errKey))
+        except FileNotFoundError as errFile:
+            print("ERROR :".format(errFile))
+
+        # remove trailing white chars and make letters lowercase
+        image_classification = image_classification.strip().lower()
+        # check if classifier result is match with image label
+        is_match = 1 if value[0] in image_classification else 0
+
+        # add classification result and match in results dict
+        results_dic[key].extend([image_classification, is_match])
+
+    # DEBUG: print out resuts dictionary
+    # for key, value in results_dic.items():
+    #    print("\n{}:\n    {}".format(key, value))
+
+    return None
