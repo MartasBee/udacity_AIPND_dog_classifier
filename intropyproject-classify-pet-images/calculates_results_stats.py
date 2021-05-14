@@ -84,19 +84,19 @@ def calculates_results_stats(results_dic):
     #       Pet Label is NOT a dog: results_dic[key][3] = 0
     results_stats_dic['n_notdogs_img'] = 0
 
-    # Number of Correct Dog matches
+    # Number of Correctly Classified Dog Images
     #       Both labels are of dogs: results_dic[key][3] = 1 and results_dic[key][4] = 1
     results_stats_dic['n_correct_dogs'] = 0
 
-    # Number of Correct Non-Dog matches
+    # Number of Correctly Classified NON-Dog Images
     #       Both labels are NOT of dogs: results_dic[key][3] = 0 and results_dic[key][4] = 0
     results_stats_dic['n_correct_notdogs'] = 0
 
-    # Number of Correct Breed matches
+    # Number of Correctly Classified Dog Breeds
     #       Pet Label is a dog & Labels match: results_dic[key][3] = 1 and results_dic[key][2] = 1
     results_stats_dic['n_correct_breed'] = 0
 
-    # Number of label matches
+    # Number of matches between pet & classifier labels
     #       Labels match: results_dic[key][2] = 1
     results_stats_dic['n_match'] = 0
 
@@ -118,5 +118,33 @@ def calculates_results_stats(results_dic):
 
         if results_dic[input_dict_key][2]:
             results_stats_dic['n_match'] += 1
+
+    # percentage of correct matches
+    if results_stats_dic['n_images']:
+        results_stats_dic['pct_match'] = \
+            float(results_stats_dic['n_match'] / results_stats_dic['n_images'] * 100)
+    else:
+        results_stats_dic['pct_match'] = float()
+
+    # percentage of correctly classified dogs
+    if results_stats_dic['n_dogs_img']:
+        results_stats_dic['pct_correct_dogs'] = \
+            float(results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img'] * 100)
+    else:
+        results_stats_dic['pct_correct_dogs'] = float()
+
+    # percentage of correctly classified NON-dogs
+    if results_stats_dic['n_notdogs_img']:
+        results_stats_dic['pct_correct_notdogs'] = \
+            float(results_stats_dic['n_correct_notdogs'] / results_stats_dic['n_notdogs_img'] * 100)
+    else:
+        results_stats_dic['pct_correct_notdogs'] = float()
+
+    # percentage of correctly classified dog breeds
+    if results_stats_dic['n_images']:
+        results_stats_dic['pct_correct_breed'] = \
+            float(results_stats_dic['n_correct_breed'] / results_stats_dic['n_dogs_img'] * 100)
+    else:
+        results_stats_dic['pct_correct_breed'] = float()
 
     return results_stats_dic
