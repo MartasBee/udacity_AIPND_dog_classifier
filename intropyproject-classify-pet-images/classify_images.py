@@ -77,9 +77,9 @@ def classify_images(images_dir, results_dic, model):
         try:
             image_classification = classifier(complete_path_to_img, model)
         except KeyError as errKey:
-            print("ERROR: {}".format(errKey))
+            print("ERROR: Key {} not found".format(errKey))
         except FileNotFoundError as errFile:
-            print("ERROR: {}".format(errFile))
+            print("ERROR: File {} not found".format(errFile))
 
         # remove trailing white chars and make letters lowercase
         image_classification = image_classification.strip().lower()
