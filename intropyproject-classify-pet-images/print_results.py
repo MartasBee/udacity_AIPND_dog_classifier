@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/print_results.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:
+# PROGRAMMER:   Martin Balaz [martin.balaz@thermofisher.com]
+# DATE CREATED: 2021-05-14
 # REVISED DATE: 
 # PURPOSE: Create a function print_results that prints the results statistics
 #          from the results statistics dictionary (results_stats_dic). It 
@@ -61,6 +61,19 @@ def print_results(results_dic, results_stats_dic, model,
                               False doesn't print anything(default) (bool) 
     Returns:
            None - simply printing results.
-    """    
-    None
+    """
+
+    print('\n\n')
+    print('CNN ARCHITECTURE: {:>16}'.format(model))
+    print('\n')
+    print('Number of Images: {:>16}'.format(results_stats_dic['n_images']))
+    print('Number of Dog Images: {:>12}'.format(results_stats_dic['n_dogs_img']))
+    print('Number of "Not-a" Dog Images: {:>4}'.format(results_stats_dic['n_notdogs_img']))
+    print('\n')
+    print('% Correct Dogs: {:>18.2f}'.format(results_stats_dic['pct_correct_dogs']))
+    print('% Correct Breed: {:>17.2f}'.format(results_stats_dic['pct_correct_breed']))
+    print('% Correct "Not-a" Dog: {:>11.2f}'.format(results_stats_dic['pct_correct_notdogs']))
+    print('% Match: {:>25.2f}'.format(results_stats_dic['pct_match']))
+
+    return None
                 
