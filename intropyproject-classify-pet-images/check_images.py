@@ -24,7 +24,7 @@
 ##
 
 # Imports python modules
-from time import time, sleep, strftime, gmtime
+from time import time
 
 # Imports print functions that check the lab
 from print_functions_for_lab_checks import *
@@ -113,7 +113,7 @@ def main():
     #      print_results(results, results_stats, in_arg.arch, True, True)
     # Prints summary results, incorrect classifications of dogs (if requested)
     # and incorrectly classified breeds (if requested)
-    print_results(results, results_stats, None, True, True)
+    print_results(results, results_stats, in_arg.arch, True, True)
 
 
     # TODO 0: Measure total program runtime by collecting end time
@@ -121,21 +121,13 @@ def main():
     
     # TODO 0: Computes overall runtime in seconds & prints it in hh:mm:ss format
     tot_time = end_time - start_time
-    tot_time_str = strftime("%H:%M:%S", gmtime(tot_time))
-    '''
-    // ORIG solution
-    
+
     tot_time_hours = int(tot_time/3600)
     tot_time_minutes = int((tot_time % 3600)/60)
-    tot_time_seconds = round((tot_time % 3600)%60)
-    
-    print("\n** Total Elapsed Runtime:",
-          str(tot_time_hours) + ":" +
-          str(tot_time_minutes) + ":" +
-          str(tot_time_seconds))
-    '''
-    print("** Total Elapsed Runtime:", tot_time_str)
-    
+    tot_time_seconds = float((tot_time % 3600)%60)
+
+    print("\n** Total Elapsed Runtime: {:02d}:{:02d}:{:07.4f}".format(tot_time_hours, tot_time_minutes, tot_time_seconds))
+
 
 # Call to main function to run the program
 if __name__ == "__main__":
