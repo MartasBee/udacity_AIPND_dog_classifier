@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/calculates_results_stats.py
 #                                                                             
-# PROGRAMMER:
-# DATE CREATED:                                  
+# PROGRAMMER:   Martin Balaz [martin.balaz@thermofisher.com]
+# DATE CREATED: 2021-05-14
 # REVISED DATE: 
 # PURPOSE: Create a function calculates_results_stats that calculates the 
 #          statistics of the results of the programrun using the classifier's model 
@@ -68,6 +68,55 @@ def calculates_results_stats(results_dic):
                      and the classroom Item XX Calculating Results for details
                      on how to calculate the counts and statistics.
     """        
-    # Replace None with the results_stats_dic dictionary that you created with 
-    # this function 
-    return None
+    # output dict with statistics
+    results_stats_dic = dict()
+
+    # ---- counters ----
+    # Number of Images
+    #       length of results_dic
+    results_stats_dic['n_images'] = len(results_dic)
+
+    # Number of Dog Images
+    #       Pet Label is a dog: results_dic[key][3] = 1
+    results_stats_dic['n_dogs_img'] = 0
+
+    # Number of Not Dog Images
+    #       Pet Label is NOT a dog: results_dic[key][3] = 0
+    results_stats_dic['n_notdogs_img'] = 0
+
+    # Number of Correct Dog matches
+    #       Both labels are of dogs: results_dic[key][3] = 1 and results_dic[key][4] = 1
+    results_stats_dic['n_correct_dogs'] = 0
+
+    # Number of Correct Non-Dog matches
+    #       Both labels are NOT of dogs: results_dic[key][3] = 0 and results_dic[key][4] = 0
+    results_stats_dic['n_correct_notdogs'] = 0
+
+    # Number of Correct Breed matches
+    #       Pet Label is a dog & Labels match: results_dic[key][3] = 1 and results_dic[key][2] = 1
+    results_stats_dic['n_correct_breed'] = 0
+
+    # Number of label matches
+    #       Labels match: results_dic[key][2] = 1
+    results_stats_dic['n_match'] = 0
+
+    # iterate through input dictionary in order to calculate counts above
+    for input_dict_key in results_dic:
+        if results_dic[input_dict_key][3]:
+            results_stats_dic['n_dogs_img'] += 1
+        else:
+            results_stats_dic['n_notdogs_img'] += 1
+
+        if results_dic[input_dict_key][3] and results_dic[input_dict_key][4]:
+            results_stats_dic['n_correct_dogs'] += 1
+
+        if not results_dic[input_dict_key][3] and not results_dic[input_dict_key][4]:
+            results_stats_dic['n_correct_notdogs'] += 1
+
+        if results_dic[input_dict_key][3] and results_dic[input_dict_key][2]:
+            results_stats_dic['n_correct_breed'] += 1
+
+        if results_dic[input_dict_key][2]:
+            results_stats_dic['n_match'] += 1
+
+    return results_stats_dic
