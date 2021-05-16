@@ -76,7 +76,7 @@ def adjust_results4_isadog(results_dic, dogfile):
             if dog_names_dict.get(line) is None:
                 dog_names_dict[line] = 1
             else:
-                print("WARNING: key {} already exists in dictionary".format(line))
+                print("WARNING: key '{}' already exists in dictionary".format(line))
 
     # loop through dict of dog files
     for results_dic_key, results_dic_value in results_dic.items():
