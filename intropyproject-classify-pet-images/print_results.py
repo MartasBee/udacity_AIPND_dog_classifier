@@ -76,9 +76,10 @@ def print_results(results_dic, results_stats_dic, model,
     print('% Match: {:>25.2f}'.format(results_stats_dic['pct_match']))
 
     if print_incorrect_dogs:
-        print('\nMisclassified Dogs\n')
+        print('\n\nMisclassified Dogs\n')
         if (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs']) != results_stats_dic['n_images']:
-            print('{:->20} | {}'.format('img label', 'classifier label'))
+            print('{:>20} | {}'.format('img label', 'classifier label'))
+            print('{:->39}'.format(''))
             for dogs_key, dogs_value in results_dic.items():
                 if sum(results_dic[dogs_key][3:]) == 1:
                     print('{:>20} | {}'.format(dogs_value[0], dogs_value[1]))
@@ -86,9 +87,10 @@ def print_results(results_dic, results_stats_dic, model,
             print('NONE')
 
     if print_incorrect_breed:
-        print("\nMisclassified Breed's of Dog\n")
+        print("\n\nMisclassified Breed's of Dog\n")
         if results_stats_dic['n_correct_dogs'] != results_stats_dic['n_correct_breed']:
-            print('{:->20} | {}'.format('img label', 'classifier label'))
+            print('{:>20} | {}'.format('img label', 'classifier label'))
+            print('{:->39}'.format(''))
             for dogs_key, dogs_value in results_dic.items():
                 if sum(results_dic[dogs_key][3:]) == 2 and results_dic[dogs_key][2] == 0:
                     print('{:>20} | {}'.format(dogs_value[0], dogs_value[1]))
